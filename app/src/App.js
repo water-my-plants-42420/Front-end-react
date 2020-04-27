@@ -11,19 +11,15 @@ function App(props) {
     <div className="App">
       <h1>Water My Plants</h1>
       {props.name} {props.time}
-      {/*<Route exact path="/Login" component={Login} />*/}
+      <Route exact path="/Login" component={Login} />
     </div>
   );
 }
 
-
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     name: state.plantReducer.plantName,
-    time: state.plantReducer.wateringTime
+    time: state.plantReducer.wateringTime,
   };
 };
-export default connect(
-  mapStateToProps, {}
-)(App)
+export default connect(mapStateToProps, {})(App);

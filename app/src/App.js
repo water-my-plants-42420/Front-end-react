@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowesrRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
+//import Login from './components/Login';
 
-function App() {
+//redux stuff
+import { connect } from 'react-redux';
+
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Water My Plants</h1>
+      {props.name} {props.time}
+      {/*<Route exact path="/Login" component={Login} />*/}
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    name: state.plantReducer.plantName,
+    time: state.plantReducer.wateringTime,
+  };
+};
+export default connect(mapStateToProps, {})(App);

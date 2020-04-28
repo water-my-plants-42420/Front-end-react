@@ -23,7 +23,10 @@ class Signup extends React.Component {
   register = (ev) => {
     ev.preventDefault();
     axios
-      .post('https://watermyplants-backend.herokuapp.com/', this.state.newCreds)
+      .post(
+        'https://watermyplants-backend.herokuapp.com/api/auth/register',
+        this.state.newCreds
+      )
       .catch((error) => console.log(error));
     this.setState({ newCreds: '' });
     this.props.history.push('/login');
@@ -40,26 +43,7 @@ class Signup extends React.Component {
         <div className="form-box">
           <Form onSubmit={this.register}>
             <h2>Water My Plants</h2>
-            <i className="fas fa-user">
-              <Input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                required="required"
-                value={this.state.newCreds.firstName}
-                onChange={this.handleChange}
-              />
-            </i>
-            <i className="fas fa-user">
-              <Input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                required="required"
-                value={this.state.newCreds.lastName}
-                onChange={this.handleChange}
-              />
-            </i>
+
             <i className="fas fa-user">
               <Input
                 type="text"

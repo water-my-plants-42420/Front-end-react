@@ -7,7 +7,7 @@ const PersonalPage = () => {
     console.log('inside personal space');
     return (
         <div>
-            {/*<AddPlant />*/}
+            <AddPlant />
             <PlantList />
         </div>
     )

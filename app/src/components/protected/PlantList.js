@@ -3,14 +3,12 @@ import PlantCard from './PlantCard';
 import { connect } from 'react-redux';
 
 function PlantList (props) {
-    console.log('inside plant list', props.plantList)
     return (
         <div>
             {
                 props.plantList.map(plant=> (
                     <div>
-                    {console.log(plant)}
-                    <PlantCard plant={plant} />
+                        <PlantCard plant={plant} />
                     </div>
                 ))
             }

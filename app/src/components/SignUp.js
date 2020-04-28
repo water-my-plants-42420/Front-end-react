@@ -5,10 +5,9 @@ import { Input, Button, Form } from './Styled';
 class Signup extends React.Component {
   state = {
     newCreds: {
-      firstName: '',
-      lastName: '',
       username: '',
       password: '',
+      phonenumber: '',
     },
   };
   handleChange = (ev) => {

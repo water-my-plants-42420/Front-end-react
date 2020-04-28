@@ -38,5 +38,3 @@ export default function AddPlant (props) {
         </div>
     )
 }  
-
-export default AddPlant;

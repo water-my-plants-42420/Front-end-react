@@ -24,7 +24,7 @@ class Login extends React.Component {
     ev.preventDefault();
     console.log('LOGIN', this.state.creds);
     axiosWithAuth()
-      .post('https://watermyplants-backend.herokuapp.com/', this.state.creds)
+      .post('.login', this.state.creds)
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);

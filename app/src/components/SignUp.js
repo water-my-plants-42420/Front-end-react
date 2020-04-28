@@ -5,10 +5,9 @@ import { Input, Button, Form } from './Styled';
 class Signup extends React.Component {
   state = {
     newCreds: {
-      firstName: '',
-      lastName: '',
       username: '',
       password: '',
+      phone: '',
     },
   };
   handleChange = (ev) => {
@@ -23,11 +22,7 @@ class Signup extends React.Component {
   register = (ev) => {
     ev.preventDefault();
     axios
-      .post('https://watermyplants-backend.herokuapp.com/', this.state.newCreds)
-      .then((res) => {
-        localStorage.setItem('token', res.data.payload);
-        // this.props.addNewUser(this.state.newCreds);
-      })
+      .post('https://watermyplants-backend.herokuapp.com/register', this.state.newCreds)
       .catch((error) => console.log(error));
     this.setState({ newCreds: '' });
   };
@@ -70,16 +65,6 @@ class Signup extends React.Component {
                 placeholder="UserName"
                 required="required"
                 value={this.state.newCreds.username}
-                onChange={this.handleChange}
-              />
-            </i>
-            <i className="fas fa-unlock-alt">
-              <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required="required"
-                value={this.state.newCreds.password}
                 onChange={this.handleChange}
               />
             </i>

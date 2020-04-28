@@ -1,24 +1,26 @@
 import React from 'react';
-import { BrowesrRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
-//import Login from './components/Login';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 //redux stuff
 import { connect } from 'react-redux';
 
-
-import PlantList from './components/protected/PlantList';
-import PersonalSpace from './components/protected/PersonalPage';
-
 function App(props) {
   return (
-    <div className="App">
-      <h1>Water My Plants</h1>
-      {/*<Route exact path="/Login" component={Login} />*/}
-      <PersonalSpace />
+    <div className="background-image">
+      <div className="App">
+        {/* <h1>Water My Plants</h1>
+      {props.name} {props.time} */}
+        <Route exact path="/" component={Login} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/SignUp" component={SignUp} />
+      </div>
     </div>
   );
 }
+
 const mapStateToProps = (state) => {
   return {
     name: state.plantReducer.plantName,

@@ -1,45 +1,80 @@
-/*
-import React, { useState } from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import '../Login.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { Input, Button, Form } from './Styled';
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+class Login extends React.Component {
+  state = {
+    creds: {
+      username: '',
+      password: '',
+    },
+  };
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
+  handleChange = (ev) => {
+    this.setState({
+      creds: {
+        ...this.state.creds,
+        [ev.target.name]: ev.target.value,
+      },
+    });
+  };
+
+  login = (ev) => {
+    ev.preventDefault();
+    console.log('LOGIN', this.state.creds);
+    axiosWithAuth()
+      .post('https://watermyplants-backend.herokuapp.com/', this.state.creds)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
+        this.props.history.push('/protected');
+      })
+      .catch((error) => console.log(error));
+  };
+
+  render() {
+    return (
+      <div className="login">
+        <div className="form-header">
+          <h2>Login</h2>
+        </div>
+
+        <div className="form-box">
+          <Form onSubmit={this.login}>
+            <h2>Water My Plants</h2>
+            <i className="fas fa-user">
+              <Input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required="required"
+                value={this.state.creds.username}
+                onChange={this.handleChange}
+              />
+            </i>
+
+            <i className="fas fa-unlock-alt">
+              <Input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required="required"
+                value={this.state.creds.password}
+                onChange={this.handleChange}
+              />
+            </i>
+            <div>
+              <Button>Log in</Button>
+            </div>
+          </Form>
+        </div>
+        <h3>
+          Not a member, <Link to="/signup">Signup</Link> here.
+        </h3>
+      </div>
+    );
   }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
-          Login
-        </Button>
-      </form>
-    </div>
-  );
 }
-*/
+
+export default Login;

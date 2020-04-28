@@ -6,12 +6,15 @@ import './App.css';
 //redux stuff
 import { connect } from 'react-redux';
 
+
+import PlantList from './components/protected/PlantList';
+
 function App(props) {
   return (
     <div className="App">
       <h1>Water My Plants</h1>
-      {props.name} {props.time}
       {/*<Route exact path="/Login" component={Login} />*/}
+      <PlantList />
     </div>
   );
 }

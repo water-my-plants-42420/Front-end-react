@@ -24,12 +24,9 @@ class Signup extends React.Component {
     ev.preventDefault();
     axios
       .post('https://watermyplants-backend.herokuapp.com/', this.state.newCreds)
-      .then((res) => {
-        localStorage.setItem('token', res.data.payload);
-        // this.props.addNewUser(this.state.newCreds);
-      })
       .catch((error) => console.log(error));
     this.setState({ newCreds: '' });
+    this.props.history.push('/login');
   };
 
   render() {
@@ -80,6 +77,16 @@ class Signup extends React.Component {
                 placeholder="Password"
                 required="required"
                 value={this.state.newCreds.password}
+                onChange={this.handleChange}
+              />
+            </i>
+            <i className="fas fa-phone">
+              <Input
+                type="text"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                required="required"
+                value={this.state.newCreds.phoneNumber}
                 onChange={this.handleChange}
               />
             </i>

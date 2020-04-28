@@ -8,13 +8,14 @@ import { connect } from 'react-redux';
 
 
 import PlantList from './components/protected/PlantList';
+import PersonalSpace from './components/protected/PersonalPage';
 
 function App(props) {
   return (
     <div className="App">
       <h1>Water My Plants</h1>
       {/*<Route exact path="/Login" component={Login} />*/}
-      <PlantList />
+      <PersonalSpace />
     </div>
   );
 }

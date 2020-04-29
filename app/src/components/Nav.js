@@ -10,6 +10,11 @@ function Nav(props) {
       </NavLink>
       <ul className="nav-links" id="nav-links">
         <li>
+          <NavLink to="/protected" activeClassName="activeNavButton">
+            Home
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/profile" activeClassName="activeNavButton">
             Profile
           </NavLink>

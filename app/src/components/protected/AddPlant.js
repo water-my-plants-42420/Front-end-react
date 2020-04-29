@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-export default function AddPlant (props) {
+import {fetchPlantList} from '../../store/actions/plantActions';
+import { connect } from 'react-redux';
+
+
+function AddPlant (props) {
+    const userId = window.localStorage.getItem('userId');
     const [newPlant, setNewPlant] = useState({
         name: '',
         species: '',
         water_freq: '',
+        user_id: userId
     })
 
     const handleChange = e => {
@@ -20,9 +26,7 @@ export default function AddPlant (props) {
         console.log("before get", newPlant)
         axiosWithAuth()
         .post('/plants', newPlant)
-        .then(res=>{
-            console.log('after get', newPlant)
-        })
+        props.fetchPlantList();
     };
     
     return (
@@ -54,3 +58,12 @@ export default function AddPlant (props) {
         </div>
     )
 }  
+
+const mapStateToProps = state =>{
+    return{
+
+    };
+};
+export default connect(
+    mapStateToProps, {fetchPlantList}
+)(AddPlant)

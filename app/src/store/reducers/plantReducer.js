@@ -1,8 +1,13 @@
 const initialState = {
     plantList: [{
-        name: '',
-        species: '',
-        water_freq: '',
+        name: 'test1',
+        species: 'test1',
+        water_freq: 'test1',
+    },
+    {
+        name:'test2',
+        species: 'test2',
+        water_freq: 'test2',
     }]
 }
 

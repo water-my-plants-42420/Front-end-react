@@ -6,7 +6,6 @@ export default function AddPlant (props) {
         name: '',
         species: '',
         water_freq: '',
-        user_id: '',
     })
 
     const handleChange = e => {
@@ -18,13 +17,14 @@ export default function AddPlant (props) {
 
     const addingNewPlant = e =>{
         e.preventDefault();
-
+        console.log("before get", newPlant)
         axiosWithAuth()
         .post('/plants', newPlant)
-
-        
+        .then(res=>{
+            console.log('after get', newPlant)
+        })
     };
-
+    
     return (
         <div>
             <form onSubmit = {addingNewPlant}>
@@ -45,8 +45,8 @@ export default function AddPlant (props) {
                 Hours before watering:
                 <input  
                     type='number'
-                    name='time'
-                    value={newPlant.time}
+                    name='water_freq'
+                    value={newPlant.water_freq}
                     onChange={handleChange}
                 /><br/>
                 <button>ADD NEW PLANT</button>

@@ -10,6 +10,7 @@ import PrivateRoute from './components/protected/ProtectedRoute';
 import { connect } from 'react-redux';
 
 function App(props) {
+  localStorage.clear();
   return (
     <Router>
       <div className="background-image">

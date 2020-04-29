@@ -43,33 +43,36 @@ class Signup extends React.Component {
           <Form onSubmit={this.register}>
             <h2>Water My Plants</h2>
 
-            <Input
-              type="text"
-              name="username"
-              placeholder="UserName"
-              required="required"
-              value={this.state.newCreds.username}
-              onChange={this.handleChange}
-            />
-
-            <Input
-              type="password"
-              name="password"
-              placeholder="Password"
-              required="required"
-              value={this.state.newCreds.password}
-              onChange={this.handleChange}
-            />
-
-            <Input
-              type="text"
-              name="phone"
-              placeholder="Phone Number"
-              required="required"
-              value={this.state.newCreds.phone}
-              onChange={this.handleChange}
-            />
-
+            <i className="fas fa-user">
+              <Input
+                type="text"
+                name="username"
+                placeholder="UserName"
+                required="required"
+                value={this.state.newCreds.username}
+                onChange={this.handleChange}
+              />
+            </i>
+            <i className="fas fa-unlock-alt">
+              <Input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required="required"
+                value={this.state.newCreds.password}
+                onChange={this.handleChange}
+              />
+            </i>
+            <i className="fas fa-phone">
+              <Input
+                type="text"
+                name="phone"
+                placeholder="Phone Number"
+                required="required"
+                value={this.state.newCreds.phone}
+                onChange={this.handleChange}
+              />
+            </i>
             <div>
               <Button>Sign up</Button>
             </div>

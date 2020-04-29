@@ -1,19 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AddPlant from './AddPlant';
 import PlantList from './PlantList';
 
-import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-import {fetchPlantList} from '../../store/actions/plantActions';
+import { fetchPlantList } from '../../store/actions/plantActions';
 import { connect } from 'react-redux';
+import Nav from '../Nav';
 
 const PersonalPage = (props) => {
-    const [plant, setPlant] = useState([]);
+  const [plant, setPlant] = useState([]);
 
-    useEffect(()=>{
-        props.fetchPlantList();
-        /*
+  useEffect(() => {
+    props.fetchPlantList();
+    /*
         axiosWithAuth()
         .get(`/plants`)
         .then(res=>{
@@ -22,12 +23,13 @@ const PersonalPage = (props) => {
                 res.data
             )
         })*/
-    },[])
+  }, []);
 
-
-    return (
-        <div>
-            {/*plant.map(res=>{
+  return (
+    <>
+      <Nav />
+      <div>
+        {/*plant.map(res=>{
                 return(
                     <div>
                          {res.name}
@@ -36,20 +38,17 @@ const PersonalPage = (props) => {
                 )
                 
             })*/}
-            {/*plant.map(res=>{
+        {/*plant.map(res=>{
                 <div>{res.name}</div>
             })*/}
-            <AddPlant />
-            <PlantList />
-        </div>
-    )
-}
-
-const mapStateToProps = state =>{
-    return{
-
-    };
+        <AddPlant />
+        <PlantList />
+      </div>
+    </>
+  );
 };
-export default connect(
-    mapStateToProps, {fetchPlantList}
-)(PersonalPage)
+
+const mapStateToProps = (state) => {
+  return {};
+};
+export default connect(mapStateToProps, { fetchPlantList })(PersonalPage);

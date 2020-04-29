@@ -5,7 +5,8 @@ export default function AddPlant (props) {
     const [newPlant, setNewPlant] = useState({
         name: '',
         species: '',
-        time: '',
+        water_freq: '',
+        user_id: '',
     })
 
     const handleChange = e => {
@@ -17,10 +18,10 @@ export default function AddPlant (props) {
 
     const addingNewPlant = e =>{
         e.preventDefault();
-        //axios goes here
+
         axiosWithAuth()
-        .post('/api/plants', newPlant)
-        //action goes here
+        .post('/plants', newPlant)
+
         
     };
 

@@ -4,8 +4,13 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import {connect} from 'react-redux';
 import {fetchPlantList} from '../../store/actions/plantActions';
 
+import {useHistory, useParams} from 'react-router-dom';
+
 function UpdatePlant(props){
+    const {push} = useHistory();
+    const params = useParams();
     const userId = window.localStorage.getItem('userId');
+    
     const [ plant, setPlant ] = useState({
         // name:'',
         // species: '',
@@ -14,7 +19,11 @@ function UpdatePlant(props){
     })
 
     useEffect(()=>{
-        setPlant(props.plant);
+        props.plant.map(res=>{
+            if(res.id===params.id){
+                setPlant(res);
+            }
+        })
     },[])
 
     const handleChange = e => {
@@ -29,10 +38,10 @@ function UpdatePlant(props){
         e.preventDefault();
         console.log(props.plant.id)
         axiosWithAuth()
-        .put(`/plants/${props.plant.id}`, plant)
+        .put(`/plants/${params.id}`, plant)
         .catch(err=> console.log(err));
-
         props.fetchPlantList();
+        push(`/protected`)
     }
     
     return (
@@ -71,7 +80,7 @@ function UpdatePlant(props){
 }
 const mapStateToProps = state =>{
     return{
-        //plant: state.plantReducer
+        plant: state.plantReducer.plantList,
     };
 };
 export default connect(

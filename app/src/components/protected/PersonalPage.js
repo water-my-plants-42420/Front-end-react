@@ -27,7 +27,6 @@ const PersonalPage = (props) => {
 
     return (
         <div>
-            hello
             {/*plant.map(res=>{
                 return(
                     <div>

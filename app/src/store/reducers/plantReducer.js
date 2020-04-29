@@ -1,21 +1,18 @@
 const initialState = {
-    plantList: [
-        {
-            name: 'rose',
-            species: '',
-            time: 24,
-            id: 0,
-        },
-        {
-            name: 'violet',
-            species: '',
-            time: 12,
-            id: 1,
-        }
-    ]
+    plantList: [{
+        name: '',
+        species: '',
+        water_freq: '',
+    }]
 }
 
 export const plantReducer = ( state=initialState, action ) => {
-    
+    switch (action.type){
+        case 'FETCH_PLANT_SUCCESS':
+            return{
+                ...state,
+                plantList: action.payload
+            }
+    }
     return state;
 }

@@ -7,7 +7,7 @@ class Signup extends React.Component {
     newCreds: {
       username: '',
       password: '',
-      phonenumber: '',
+      phone: '',
     },
   };
   handleChange = (ev) => {
@@ -66,10 +66,10 @@ class Signup extends React.Component {
             <i className="fas fa-phone">
               <Input
                 type="text"
-                name="phoneNumber"
+                name="phone"
                 placeholder="Phone Number"
                 required="required"
-                value={this.state.newCreds.phoneNumber}
+                value={this.state.newCreds.phone}
                 onChange={this.handleChange}
               />
             </i>

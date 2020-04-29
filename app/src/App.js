@@ -9,6 +9,8 @@ import UpdateProfile from './components/protected/UpdateProfile';
 
 //redux stuff
 import { connect } from 'react-redux';
+import UpdatePlant from './components/protected/UpdatePlant';
+import AddPlant from './components/protected/AddPlant';
 
 function App(props) {
   localStorage.clear();
@@ -24,16 +26,13 @@ function App(props) {
 
           <PrivateRoute exact path="/protected" component={PersonalPage} />
           <PrivateRoute exact path="/profile" component={UpdateProfile} />
+          <PrivateRoute exact path="/adding-plant" component={AddPlant} />
+          <PrivateRoute exact path="/update-plant/:id" component={UpdatePlant} />
+
         </div>
       </div>
     </Router>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    name: state.plantReducer.plantName,
-    time: state.plantReducer.wateringTime,
-  };
-};
-export default connect(mapStateToProps, {})(App);
+export default App;

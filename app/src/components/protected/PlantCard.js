@@ -1,6 +1,12 @@
 import React from 'react';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import UpdatePlant from './UpdatePlant';
+
+import {fetchPlantList} from '../../store/actions/plantActions';
+import { connect } from 'react-redux';
+
 const PlantCard = props => {
     const deletePlant = e =>{
         e.preventDefault();
@@ -9,13 +15,11 @@ const PlantCard = props => {
         .delete(`/plants/${props.plant.id}`)
         .catch(err=>{
             console.log(err);
-        })      
-
-        axiosWithAuth()
-        .get(`/plants/${props.plant.id}`)
-        .then(res=>{
-            console.log('data', res.data);
         })
+
+        props.fetchPlantList();
+        
+
     }
     return(
         <div>
@@ -23,6 +27,11 @@ const PlantCard = props => {
             Species Name: {props.plant.species}<br/>
             Watering Cycle: {props.plant.water_freq}<br/>
             id: {props.plant.id}<br/>
+            {/*<Router>
+            <Link to='/plants/edit'>Edit</Link>
+            <Route path='/plants/edit' component={UpdatePlant}/>
+            </Router>*/}
+            <UpdatePlant plant={props.plant}/>
             <div className='delete-button' onClick={deletePlant}>
                 Delete
             </div>
@@ -31,4 +40,11 @@ const PlantCard = props => {
     )
 }
 
-export default PlantCard;
+const mapStateToProps = state =>{
+    return{
+
+    };
+};
+export default connect(
+    mapStateToProps, {fetchPlantList}
+)(PlantCard)

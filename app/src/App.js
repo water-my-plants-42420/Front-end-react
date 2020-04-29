@@ -5,6 +5,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PersonalPage from './components/protected/PersonalPage';
 import PrivateRoute from './components/protected/ProtectedRoute';
+import UpdateProfile from './components/protected/UpdateProfile';
 
 //redux stuff
 import { connect } from 'react-redux';
@@ -22,6 +23,7 @@ function App(props) {
           <Route exact path="/SignUp" component={SignUp} />
 
           <PrivateRoute exact path="/protected" component={PersonalPage} />
+          <PrivateRoute exact path="/profile" component={UpdateProfile} />
         </div>
       </div>
     </Router>

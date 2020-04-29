@@ -10,6 +10,12 @@ const PlantCard = props => {
         .catch(err=>{
             console.log(err);
         })      
+
+        axiosWithAuth()
+        .get(`/plants/${props.plant.id}`)
+        .then(res=>{
+            console.log('data', res.data);
+        })
     }
     return(
         <div>

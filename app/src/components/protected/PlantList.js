@@ -3,8 +3,12 @@ import PlantCard from './PlantCard';
 import { connect } from 'react-redux';
 
 function PlantList (props) {
+
+
+
     return (
         <div>
+            {console.log(props.plantList)}
             {
                 props.plantList.map(plant=> (
                     <div>

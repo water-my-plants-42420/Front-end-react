@@ -1,56 +1,73 @@
 import React from 'react';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import UpdatePlant from './UpdatePlant';
-
-import {fetchPlantList} from '../../store/actions/plantActions';
+import { fetchPlantList } from '../../store/actions/plantActions';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import {useHistory} from 'react-router-dom';
+import styled from 'styled-components';
+
+const PlantDataDiv = styled.div`
+    height: 350px;
+    display:flex;
+    flex-direction: column;
+    justify-conent: space-between;
+`;
+const PlantDataH2 = styled.h2`
+    color: black;
+`;
+const PlantDataNav = styled.div`
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around; 
+`;
+
 
 const PlantCard = props => {
-    const {push} = useHistory();
-    const deletePlant = e =>{
+    const { push } = useHistory();
+    const deletePlant = e => {
         e.preventDefault();
         console.log(props.plant.id);
         axiosWithAuth()
-        .delete(`/plants/${props.plant.id}`)
-        .catch(err=>{
-            console.log(err);
-        })
+            .delete(`/plants/${props.plant.id}`)
+            .catch(err => {
+                console.log(err);
+            })
 
         props.fetchPlantList();
-        
+
 
     }
-    return(
+    return (
         <div>
-            Plant Name: {props.plant.name}<br/>
-            Species Name: {props.plant.species}<br/>
-            Watering Cycle: {props.plant.water_freq}<br/>
-            id: {props.plant.id}<br/>
+            <PlantDataDiv>
+                <PlantDataH2>Plant Name: {props.plant.name}</PlantDataH2><br />
+                <PlantDataH2>Species Name: {props.plant.species}</PlantDataH2><br />
+                <PlantDataH2>Watering Cycle: {props.plant.water_freq}</PlantDataH2><br />
+            </PlantDataDiv>
             {/*<Router>
             <Link to='/plants/edit'>Edit</Link>
             <Route path='/plants/edit' component={UpdatePlant}/>
             </Router>
             <UpdatePlant plant={props.plant}/>*/}
-            <div className='edit-button' onClick={()=>push(`/update-plant/${props.plant.id}`)}>
-                Edit
+            <PlantDataNav>
+                <div className='edit-button' onClick={() => push(`/update-plant/${props.plant.id}`)}>
+                    Edit
             </div>
-            <div className='delete-button' onClick={deletePlant}>
-                Delete
+                <div className='delete-button' onClick={deletePlant}>
+                    Delete
             </div>
-            <br/><br/>
+            </PlantDataNav>
+            <br /><br />
         </div>
     )
 }
 
-const mapStateToProps = state =>{
-    return{
+const mapStateToProps = state => {
+    return {
 
     };
 };
 export default connect(
-    mapStateToProps, {fetchPlantList}
+    mapStateToProps, { fetchPlantList }
 )(PlantCard)

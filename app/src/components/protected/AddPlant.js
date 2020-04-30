@@ -5,6 +5,34 @@ import {fetchPlantList} from '../../store/actions/plantActions';
 import { connect } from 'react-redux';
 
 
+import styled from 'styled-components';
+
+const AddPlantDiv = styled.div`
+    width: 2000px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+`;
+
+const AddPlantForm = styled.form`
+    width: 280px;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    
+`;
+
+const AddPlantInput = styled.input`
+    width: 80%;
+    margin: 0 auto;
+`;
+
+const AddPlantButton = styled.button`
+    margin: 0 auto;
+    width:45%;
+    border-radius 3px;
+`
+
 function AddPlant (props) {
     const userId = window.localStorage.getItem('userId');
     const [newPlant, setNewPlant] = useState({
@@ -30,32 +58,32 @@ function AddPlant (props) {
     };
     
     return (
-        <div>
-            <form onSubmit = {addingNewPlant}>
+        <AddPlantDiv>
+            <AddPlantForm onSubmit = {addingNewPlant}>
                 Plant's Nickname:
-                <input
+                <AddPlantInput
                     type='text'
                     name='name'
                     value={newPlant.name}
                     onChange={handleChange}
                 /><br/>
                 Species: 
-                <input
+                <AddPlantInput
                     type='text'
                     name='species'
                     value={newPlant.species}
                     onChange={handleChange}
                 /><br/>
                 Hours before watering:
-                <input  
+                <AddPlantInput  
                     type='number'
                     name='water_freq'
                     value={newPlant.water_freq}
                     onChange={handleChange}
                 /><br/>
-                <button>ADD NEW PLANT</button>
-            </form>
-        </div>
+                <AddPlantButton>ADD NEW PLANT</AddPlantButton>
+            </AddPlantForm>
+        </AddPlantDiv>
     )
 }  
 

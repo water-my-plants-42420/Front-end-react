@@ -21,12 +21,8 @@ const PlantCardDiv = styled.div`
 `;
 
 function PlantList (props) {
-
-
-
     return (
         <PlantListDiv>
-            {console.log(props.plantList)}
             {
                 props.plantList.map(plant=> (
                     <PlantCardDiv>

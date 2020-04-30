@@ -10,7 +10,7 @@ function UpdatePlant(props){
     const {push} = useHistory();
     const params = useParams();
     const userId = window.localStorage.getItem('userId');
-    
+    //console.log(props.plant[params.id-2]);
     const [ plant, setPlant ] = useState({
         // name:'',
         // species: '',
@@ -20,7 +20,7 @@ function UpdatePlant(props){
 
     useEffect(()=>{
         props.plant.map(res=>{
-            if(res.id===params.id){
+            if(res.id==params.id){
                 setPlant(res);
             }
         })

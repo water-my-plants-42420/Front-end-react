@@ -30,13 +30,14 @@ const PlantCard = props => {
         console.log(props.plant.id);
         axiosWithAuth()
             .delete(`/plants/${props.plant.id}`)
+            .then(res=>{
+                console.log(res);
+            })
             .catch(err => {
                 console.log(err);
             })
-
         props.fetchPlantList();
-
-
+        push(`/protected`);
     }
     return (
         <div>

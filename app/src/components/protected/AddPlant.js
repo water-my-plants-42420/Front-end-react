@@ -51,7 +51,6 @@ function AddPlant (props) {
 
     const addingNewPlant = e =>{
         e.preventDefault();
-        console.log("before get", newPlant)
         axiosWithAuth()
         .post('/plants', newPlant)
         props.fetchPlantList();

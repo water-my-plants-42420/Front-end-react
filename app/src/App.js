@@ -28,7 +28,6 @@ function App(props) {
           <PrivateRoute exact path="/profile" component={UpdateProfile} />
           <PrivateRoute exact path="/adding-plant" component={AddPlant} />
           <PrivateRoute exact path="/update-plant/:id" component={UpdatePlant} />
-
         </div>
       </div>
     </Router>

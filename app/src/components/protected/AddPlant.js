@@ -3,7 +3,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 import {fetchPlantList} from '../../store/actions/plantActions';
 import { connect } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -41,6 +41,7 @@ function AddPlant (props) {
         water_freq: '',
         user_id: userId
     })
+    const {push} = useHistory();
 
     const handleChange = e => {
         setNewPlant({
@@ -54,6 +55,7 @@ function AddPlant (props) {
         axiosWithAuth()
         .post('/plants', newPlant)
         props.fetchPlantList();
+        push(`/protected`);
     };
     
     return (

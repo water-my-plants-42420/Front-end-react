@@ -30,7 +30,7 @@ const PlantCard = props => {
         console.log(props.plant.id);
         axiosWithAuth()
             .delete(`/plants/${props.plant.id}`)
-            .then(res=>{
+            .then(res => {
                 console.log(res);
             })
             .catch(err => {
@@ -44,7 +44,7 @@ const PlantCard = props => {
             <PlantDataDiv>
                 <PlantDataH2>Plant Name: {props.plant.name}</PlantDataH2><br />
                 <PlantDataH2>Species Name: {props.plant.species}</PlantDataH2><br />
-                <PlantDataH2>Watering Cycle: {props.plant.water_freq}</PlantDataH2><br />
+                <PlantDataH2>Watering Cycle: {props.plant.water_freq} hours</PlantDataH2><br />
             </PlantDataDiv>
             {/*<Router>
             <Link to='/plants/edit'>Edit</Link>
@@ -52,12 +52,12 @@ const PlantCard = props => {
             </Router>
             <UpdatePlant plant={props.plant}/>*/}
             <PlantDataNav>
-                <div className='edit-button' onClick={() => push(`/update-plant/${props.plant.id}`)}>
+                <button className='edit-button' onClick={() => push(`/update-plant/${props.plant.id}`)}>
                     Edit
-            </div>
-                <div className='delete-button' onClick={deletePlant}>
+                </button>
+                <button className='delete-button' onClick={deletePlant}>
                     Delete
-            </div>
+            </button>
             </PlantDataNav>
             <br /><br />
         </div>

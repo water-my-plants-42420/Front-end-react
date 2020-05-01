@@ -2,7 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './sass/nav.scss';
 
+import { useHistory } from 'react-router-dom';
+
 function Nav(props) {
+  const {push} = useHistory();
+  const logOut =()=>{
+    localStorage.clear();
+    push("/login");
+  }
   return (
     <nav>
       <NavLink to="/" activeClassName="activeNavButton" className="logoName">
@@ -20,9 +27,12 @@ function Nav(props) {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login" activeClassName="activeNavButton">
+          {/*<NavLink to="/login" activeClassName="activeNavButton">
             Sign Out
-          </NavLink>
+          </NavLink>*/}
+          <button onClick={logOut}>
+            Log Out
+          </button>
         </li>
       </ul>
     </nav>

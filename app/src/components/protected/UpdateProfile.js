@@ -5,13 +5,14 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const EditProfileForm = () => {
   const initialProfileInfo = {
-    phone: '',
+    username: '',
     password: '',
+    phone: '',
   };
 
   const [profileInfo, setProfileInfo] = useState(initialProfileInfo);
 
-  const { phone, password } = profileInfo;
+  const { username, phone, password } = profileInfo;
 
   // Handler Functions
   const handleInputChange = (e) => {
@@ -21,19 +22,20 @@ const EditProfileForm = () => {
     });
   };
 
-  let userid = parseInt(localStorage.getItem('userid'));
+  let userid = parseInt(localStorage.getItem('userId'));
 
   const updateProfile = (userid) => {
     axiosWithAuth()
       .put(`users/${userid}`, profileInfo)
       .then((res) => {
+        console.log(res.body.message)
         console.log('NEWPROFILE', profileInfo);
       })
       .catch((error) => console.log(error));
   };
 
   const handleFormSubmit = (e) => {
-    if (phone && password) {
+    if (phone && password && username) {
       e.preventDefault();
       console.log(
         'value of newUser inside of EDIT PROFILE handleFormSubmit',
@@ -54,14 +56,14 @@ const EditProfileForm = () => {
         </div>
 
         <div className="form-inputs">
-          <label htmlFor="phone">Phone Number</label>
+          <label htmlFor="phone">User Name</label>
           <input
-            type="phone"
-            id="phone"
-            name="phone"
+            type="username"
+            id="username"
+            name="username"
             onChange={handleInputChange}
-            value={phone}
-            placeholder="Number"
+            value={username}
+            placeholder="Username"
             required
           />
         </div>
@@ -75,6 +77,19 @@ const EditProfileForm = () => {
             onChange={handleInputChange}
             value={password}
             placeholder="Password"
+            required
+          />
+        </div>
+
+        <div className="form-inputs">
+          <label htmlFor="phone">Phone Number</label>
+          <input
+            type="phone"
+            id="phone"
+            name="phone"
+            onChange={handleInputChange}
+            value={phone}
+            placeholder="Number"
             required
           />
         </div>
